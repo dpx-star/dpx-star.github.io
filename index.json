@@ -44,6 +44,18 @@
       "platform": "Windows",
       "download": "packages/releases/DPX-Setup.zip",
       "source": "https://github.com/dpx-star/dpx-star.github.io"
+    },
+    {
+    "id": "7zip",
+      "name": "7-Zip",
+      "version": "26.02",
+      "description": "Official 7-Zip Installer",
+      "category": "Utilities",
+      "license": "MIT",
+      "publisher": "7-Zip",
+      "platform": "Windows",
+      "download": "packages/releases/7zip-x64.zip",
+      "source": "https://github.com/ip7z/7zip"
     }
   ]
 }
