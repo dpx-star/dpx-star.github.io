@@ -6,8 +6,10 @@
 
   <meta
     name="description"
-    content="Download Damian Packager X (DPX) for Windows."
+    content="Download and install Damian Packager X (DPX) for Windows."
   >
+
+  <meta name="theme-color" content="#0b0d12">
 
   <title>Download DPX — Damian Packager X</title>
 
@@ -16,12 +18,16 @@
 
 <body>
 
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header class="site-header">
 
     <a
       class="brand"
       href="index.html"
-      aria-label="DPX home"
+      aria-label="DPX — Damian Packager X home"
     >
       <span class="brand-mark">D</span>
 
@@ -31,30 +37,48 @@
       </span>
     </a>
 
-    <nav class="nav">
-      <a href="index.html#packages">Packages</a>
-      <a href="index.html#about">About</a>
+
+    <nav class="nav" aria-label="Main navigation">
+
+      <a href="index.html#packages">
+        Packages
+      </a>
+
+      <a href="index.html#about">
+        About
+      </a>
+
+      <a href="download.html">
+        Download
+      </a>
 
       <a
         href="https://github.com/dpx-star/dpx-star.github.io"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
         GitHub ↗
       </a>
+
     </nav>
 
   </header>
 
 
+  <!-- =========================
+       MAIN
+  ========================== -->
+
   <main>
+
+    <!-- HERO -->
 
     <section class="hero">
 
       <div class="hero-content">
 
         <span class="eyebrow">
-          WINDOWS • LATEST RELEASE
+          WINDOWS • DPX 0.1.1
         </span>
 
         <h1>
@@ -63,25 +87,25 @@
         </h1>
 
         <p>
-          Damian Packager X is a lightweight package manager
-          for Windows. Install DPX and manage packages directly
-          from PowerShell or Command Prompt.
+          Install Damian Packager X and manage packages
+          directly from PowerShell or Command Prompt.
         </p>
+
 
         <div class="hero-actions">
 
           <a
             class="button primary"
-            href="DPX-Setup.exe"
+            href="packages/releases/DPX-Setup.exe"
           >
-            Download DPX
+            Download DPX-Setup.exe
           </a>
 
           <a
             class="button secondary"
             href="index.html"
           >
-            Back to repository
+            Back to home
           </a>
 
         </div>
@@ -89,17 +113,23 @@
       </div>
 
 
+      <!-- TERMINAL PREVIEW -->
+
       <div
         class="terminal-card"
         aria-label="DPX terminal preview"
       >
 
         <div class="terminal-top">
+
           <span></span>
           <span></span>
           <span></span>
+
           <small>PowerShell</small>
+
         </div>
+
 
         <div class="terminal-body">
 
@@ -118,11 +148,11 @@
 
           <p>
             <span class="prompt">PS C:\&gt;</span>
-            dpx search minecraft
+            dpx install minecraft-bot
           </p>
 
           <p class="success">
-            ✓ Packages found
+            ✓ Package installed
           </p>
 
           <p>
@@ -136,19 +166,29 @@
     </section>
 
 
+    <!-- =========================
+         DOWNLOAD
+    ========================== -->
+
     <section class="section">
 
       <div class="section-heading">
 
         <div>
+
           <span class="eyebrow">
-            DPX 0.1.1
+            LATEST RELEASE
           </span>
 
           <h2>
             Windows installer
           </h2>
+
         </div>
+
+        <span class="count">
+          Version 0.1.1
+        </span>
 
       </div>
 
@@ -169,19 +209,23 @@
 
           </div>
 
+
           <h3>
             Damian Packager X
           </h3>
+
 
           <span class="version">
             v0.1.1
           </span>
 
+
           <p>
+            The official DPX Windows installer.
             Install DPX and use the
-            <code>dpx</code> command from PowerShell
-            or Command Prompt.
+            <code>dpx</code> command from your terminal.
           </p>
+
 
           <div class="package-footer">
 
@@ -191,7 +235,7 @@
 
             <a
               class="button secondary small"
-              href="DPX-Setup.exe"
+              href="packages/releases/DPX-Setup.exe"
             >
               Download
             </a>
@@ -205,44 +249,280 @@
     </section>
 
 
+    <!-- =========================
+         INSTALLATION GUIDE
+    ========================== -->
+
     <section class="about-section">
 
       <div>
 
         <span class="eyebrow">
-          AFTER INSTALLATION
+          INSTALLATION
         </span>
 
         <h2>
-          Use DPX from your terminal.
+          Getting started with DPX
+        </h2>
+
+      </div>
+
+
+      <div class="install-guide">
+
+        <!-- STEP 1 -->
+
+        <div class="install-step">
+
+          <span class="step-number">
+            1
+          </span>
+
+          <div>
+
+            <h3>
+              Download DPX
+            </h3>
+
+            <p>
+              Download the latest DPX Windows installer
+              and complete the installation.
+            </p>
+
+            <a
+              class="button primary"
+              href="packages/releases/DPX-Setup.exe"
+            >
+              Download DPX-Setup.exe
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- STEP 2 -->
+
+        <div class="install-step">
+
+          <span class="step-number">
+            2
+          </span>
+
+          <div>
+
+            <h3>
+              Install Java
+            </h3>
+
+            <p>
+              DPX currently runs on Java.
+              <strong>
+                <a
+                  href="https://adoptium.net/temurin/releases/?arch=any&version=21&os=any"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Install Java 21
+                </a>
+              </strong>
+              for the current DPX release.
+            </p>
+
+            <p>
+              Make sure Java is installed before running DPX.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- STEP 3 -->
+
+        <div class="install-step">
+
+          <span class="step-number">
+            3
+          </span>
+
+          <div>
+
+            <h3>
+              Refresh your PowerShell PATH
+            </h3>
+
+            <p>
+              After installing DPX, open PowerShell and run:
+            </p>
+
+            <pre><code>$env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")</code></pre>
+
+            <p>
+              This refreshes the current PowerShell session
+              so it can find the newly installed
+              <code>dpx</code> command.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- STEP 4 -->
+
+        <div class="install-step">
+
+          <span class="step-number">
+            4
+          </span>
+
+          <div>
+
+            <h3>
+              Test DPX
+            </h3>
+
+            <p>
+              Run:
+            </p>
+
+            <pre><code>dpx version</code></pre>
+
+            <p>
+              You should see the installed DPX version.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- STEP 5 -->
+
+        <div class="install-step">
+
+          <span class="step-number">
+            5
+          </span>
+
+          <div>
+
+            <h3>
+              Install packages
+            </h3>
+
+            <p>
+              Search the repository and install packages
+              directly from the command line:
+            </p>
+
+            <pre><code>dpx search minecraft
+dpx info minecraft-bot
+dpx install minecraft-bot</code></pre>
+
+            <p>
+              Command-line installation is the main way
+              to use DPX.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         JAVA NOTICE
+    ========================== -->
+
+    <section class="section">
+
+      <div class="about-card">
+
+        <div class="about-icon">
+          !
+        </div>
+
+        <div>
+
+          <span class="eyebrow">
+            IMPORTANT
+          </span>
+
+          <h2>
+            Java is currently required
+          </h2>
+
+          <p>
+            DPX 0.1.1 currently requires Java to run.
+            Java 21 is recommended for the current release.
+            A future DPX release may bundle a Java runtime
+            so users do not have to install Java separately.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MANUAL DOWNLOAD
+    ========================== -->
+
+    <section class="about-section">
+
+      <div>
+
+        <span class="eyebrow">
+          ALTERNATIVE
+        </span>
+
+        <h2>
+          Prefer downloading packages manually?
         </h2>
 
       </div>
 
       <p>
-        After installing DPX, open a new PowerShell or
-        Command Prompt window and run commands such as:
+        You can also browse the DPX package repository and
+        download package files directly from the website
+        without using the command line.
       </p>
 
-      <pre><code>dpx version
-dpx help
-dpx search minecraft
-dpx info minecraft-bot
-dpx install minecraft-bot</code></pre>
+      <div class="hero-actions">
+
+        <a
+          class="button primary"
+          href="index.html#packages"
+        >
+          Browse packages
+        </a>
+
+      </div>
 
     </section>
 
   </main>
 
 
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer class="site-footer">
 
     <span>
-      © <span id="year"></span> DPX
+      © <span id="year"></span> Damian Packager X
     </span>
 
     <span>
-      Damian Packager X • Open source
+      Built for Windows • Open source
     </span>
 
   </footer>
