@@ -5,7 +5,7 @@ const state = {
 
 const REPOSITORY = {
   // Change this to your real GitHub repository before publishing.
-  github: "https://github.com/YOUR_USERNAME/damian-package-manager",
+  github: "https://github.com/dpx-star/dpx-star.github.io",
   index: "index.json"
 };
 
