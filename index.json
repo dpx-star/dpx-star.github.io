@@ -4,7 +4,7 @@
     "name": "Damian Package Manager",
     "id": "dpm",
     "description": "Public package repository for DPM.",
-    "github": "https://github.com/YOUR_USERNAME/damian-package-manager"
+    "github": "https://github.com/dpx-star/dpx-star.github.io"
   },
   "packages": [
     {
