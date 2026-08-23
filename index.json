@@ -21,8 +21,7 @@
       "download": "packages/releases/minecraft-bot-main.zip",
       "source": "https://github.com/springknight3/minecraft-bot"
     },
-
-    {
+{
       "id": "damians-jar-builder",
       "name": "Damian's Jar Builder",
       "version": "1.0.3",
@@ -34,6 +33,7 @@
       "download": "packages/releases/Damian.s.Jar.Builder.exe.zip",
       "source": "https://github.com/dpx-star/Damians-Jar-Builder"
     },
+    {
     "id": "dpx-installer",
       "name": "DPX INSTALLER",
       "version": "1.0.3",
