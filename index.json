@@ -33,6 +33,16 @@
       "platform": "Windows",
       "download": "packages/releases/Damian.s.Jar.Builder.exe.zip",
       "source": "https://github.com/dpx-star/Damians-Jar-Builder"
-    }
+    },
+    "id": "dpx-installer",
+      "name": "DPX INSTALLER",
+      "version": "1.0.3",
+      "description": "quick jar builder for Java (Mainly)",
+      "category": "Utilities",
+      "license": "MIT",
+      "publisher": "DPX",
+      "platform": "Windows",
+      "download": "packages/releases/DPX-Setup.exe.zip",
+      "source": "https://github.com/dpx-star/dpx-star.github.io"
   ]
 }
