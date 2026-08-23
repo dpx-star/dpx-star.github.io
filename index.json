@@ -1,36 +1,23 @@
 {
-  "schemaVersion": 2,
-
+  "schemaVersion": 1,
   "repository": {
     "name": "Damian Packager X",
     "id": "dpx",
     "description": "Public package repository for DPX.",
-    "github": "https://github.com/dpx-star/dpx-star.github.io",
-
-    "packagesPath": "packages/releases"
+    "github": "https://github.com/dpx-star/dpx-star.github.io"
   },
-
   "packages": [
     {
-      "id": "example",
-      "name": "Example Package",
+      "id": "minecraft-bot",
+      "name": "Minecraft BOT",
       "version": "1.0.0",
-      "description": "A sample package showing how DPX package metadata works.",
+      "description": "a minecraft bot, supports both offline/online mode",
       "category": "Utilities",
       "license": "MIT",
-      "publisher": "DPX",
-      "platform": "Windows"
-    },
-
-    {
-      "id": "example-devtool",
-      "name": "Example DevTool",
-      "version": "0.3.0",
-      "description": "A second example package for testing search and categories.",
-      "category": "Development",
-      "license": "MIT",
-      "publisher": "DPX",
-      "platform": "Windows"
+      "publisher": "SpringKnight3",
+      "platform": "Windows/Linux",
+      "download": "packages/releases/minecraft-bot-main.zip",
+      "source": "https://github.com/springknight3/minecraft-bot"
     }
   ]
 }
