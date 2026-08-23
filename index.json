@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "repository": {
-    "name": "Damian Package Manager",
+    "name": "Damian Packager X",
     "id": "dpm",
-    "description": "Public package repository for DPM.",
+    "description": "Public package repository for DPX.",
     "github": "https://github.com/dpx-star/dpx-star.github.io"
   },
   "packages": [
@@ -14,10 +14,10 @@
       "description": "A sample package showing how DPM package metadata works.",
       "category": "Utilities",
       "license": "MIT",
-      "publisher": "DPM",
+      "publisher": "DPX",
       "platform": "Windows",
-      "download": "https://github.com/YOUR_USERNAME/damian-package-manager/releases",
-      "source": "https://github.com/YOUR_USERNAME/damian-package-manager"
+      "download": "https://github.com/dpx-star/dpx-star.github.io",
+      "source": "https://github.com/dpx-star/dpx-star.github.io"
     },
     {
       "id": "example-devtool",
@@ -28,8 +28,8 @@
       "license": "MIT",
       "publisher": "DPM",
       "platform": "Windows",
-      "download": "https://github.com/YOUR_USERNAME/damian-package-manager/releases",
-      "source": "https://github.com/YOUR_USERNAME/damian-package-manager"
+      "download": "https://github.com/dpx-star/dpx-star.github.io",
+      "source": "https://github.com/dpx-star/dpx-star.github.io"
     }
   ]
 }
