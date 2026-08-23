@@ -14,13 +14,227 @@
   <title>Download DPX — Damian Packager X</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .download-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .download-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 55px;
+    }
+
+    .download-header h1 {
+      margin: 10px 0 16px;
+      font-size: clamp(42px, 7vw, 68px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .download-header h1 span {
+      background: linear-gradient(90deg, #9b8fff, #d0caff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .download-header p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .download-card {
+      max-width: 620px;
+      margin: 0 auto 60px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .download-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .download-card h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .download-card p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .version-badge {
+      padding: 5px 9px;
+      border-radius: 7px;
+      background: #171b24;
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .steps {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .steps h2 {
+      margin-bottom: 28px;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 16px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .step:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-number {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(124, 108, 255, 0.12);
+      border: 1px solid rgba(124, 108, 255, 0.18);
+      color: var(--accent-light);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin: 2px 0 7px;
+      font-size: 16px;
+    }
+
+    .step p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .step a {
+      color: var(--accent-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .step a:hover {
+      color: var(--text);
+    }
+
+    .command-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #080a0f;
+    }
+
+    .command-box code {
+      flex: 1;
+      overflow-x: auto;
+      white-space: nowrap;
+      color: #c5cada;
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+      font-size: 12px;
+    }
+
+    .copy-button {
+      flex-shrink: 0;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: #151923;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .copy-button:hover {
+      background: #1b202c;
+    }
+
+    .java-note {
+      margin-top: 55px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .java-note strong {
+      color: var(--text);
+    }
+
+    .download-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 600px) {
+      .download-page {
+        padding-top: 55px;
+      }
+
+      .download-card {
+        padding: 22px;
+      }
+
+      .command-box {
+        align-items: stretch;
+      }
+
+      .copy-button {
+        align-self: center;
+      }
+
+      .step {
+        grid-template-columns: 32px 1fr;
+      }
+
+      .step-number {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
 
   <header class="site-header">
 
@@ -36,7 +250,6 @@
         <small>Damian Packager X</small>
       </span>
     </a>
-
 
     <nav class="nav" aria-label="Main navigation">
 
@@ -65,455 +278,260 @@
   </header>
 
 
-  <!-- =========================
-       MAIN
-  ========================== -->
+  <main class="download-page">
 
-  <main>
+    <!-- HEADER -->
 
-    <!-- HERO -->
+    <section class="download-header">
 
-    <section class="hero">
+      <span class="eyebrow">
+        WINDOWS
+      </span>
 
-      <div class="hero-content">
+      <h1>
+        Get <span>DPX.</span>
+      </h1>
 
-        <span class="eyebrow">
-          WINDOWS • DPX 0.1.1
-        </span>
-
-        <h1>
-          Download<br>
-          <span>DPX.</span>
-        </h1>
-
-        <p>
-          Install Damian Packager X and manage packages
-          directly from PowerShell or Command Prompt.
-        </p>
-
-
-        <div class="hero-actions">
-
-          <a
-            class="button primary"
-            href="packages/releases/DPX-Setup.exe"
-          >
-            Download DPX-Setup.exe
-          </a>
-
-          <a
-            class="button secondary"
-            href="index.html"
-          >
-            Back to home
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- TERMINAL PREVIEW -->
-
-      <div
-        class="terminal-card"
-        aria-label="DPX terminal preview"
-      >
-
-        <div class="terminal-top">
-
-          <span></span>
-          <span></span>
-          <span></span>
-
-          <small>PowerShell</small>
-
-        </div>
-
-
-        <div class="terminal-body">
-
-          <p>
-            <span class="prompt">PS C:\&gt;</span>
-            dpx version
-          </p>
-
-          <p class="success">
-            DPX — Damian Packager X
-          </p>
-
-          <p class="muted">
-            Version 0.1.1
-          </p>
-
-          <p>
-            <span class="prompt">PS C:\&gt;</span>
-            dpx install minecraft-bot
-          </p>
-
-          <p class="success">
-            ✓ Package installed
-          </p>
-
-          <p>
-            <span class="cursor">█</span>
-          </p>
-
-        </div>
-
-      </div>
+      <p>
+        Install Damian Packager X and manage packages
+        directly from your terminal.
+      </p>
 
     </section>
 
 
-    <!-- =========================
-         DOWNLOAD
-    ========================== -->
+    <!-- DOWNLOAD -->
 
-    <section class="section">
+    <section class="download-card">
 
-      <div class="section-heading">
-
-        <div>
-
-          <span class="eyebrow">
-            LATEST RELEASE
-          </span>
-
-          <h2>
-            Windows installer
-          </h2>
-
-        </div>
-
-        <span class="count">
-          Version 0.1.1
-        </span>
-
-      </div>
-
-
-      <div class="package-grid">
-
-        <article class="package-card">
-
-          <div class="package-top">
-
-            <div class="package-icon">
-              D
-            </div>
-
-            <span class="tag">
-              Windows
-            </span>
-
-          </div>
-
-
-          <h3>
-            Damian Packager X
-          </h3>
-
-
-          <span class="version">
-            v0.1.1
-          </span>
-
-
-          <p>
-            The official DPX Windows installer.
-            Install DPX and use the
-            <code>dpx</code> command from your terminal.
-          </p>
-
-
-          <div class="package-footer">
-
-            <small>
-              DPX-Setup.exe
-            </small>
-
-            <a
-              class="button secondary small"
-              href="packages/releases/DPX-Setup.exe"
-            >
-              Download
-            </a>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         INSTALLATION GUIDE
-    ========================== -->
-
-    <section class="about-section">
-
-      <div>
-
-        <span class="eyebrow">
-          INSTALLATION
-        </span>
+      <div class="download-card-top">
 
         <h2>
-          Getting started with DPX
+          Damian Packager X
         </h2>
 
-      </div>
-
-
-      <div class="install-guide">
-
-        <!-- STEP 1 -->
-
-        <div class="install-step">
-
-          <span class="step-number">
-            1
-          </span>
-
-          <div>
-
-            <h3>
-              Download DPX
-            </h3>
-
-            <p>
-              Download the latest DPX Windows installer
-              and complete the installation.
-            </p>
-
-            <a
-              class="button primary"
-              href="packages/releases/DPX-Setup.exe"
-            >
-              Download DPX-Setup.exe
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- STEP 2 -->
-
-        <div class="install-step">
-
-          <span class="step-number">
-            2
-          </span>
-
-          <div>
-
-            <h3>
-              Install Java
-            </h3>
-
-            <p>
-              DPX currently runs on Java.
-              <strong>
-                <a
-                  href="https://adoptium.net/temurin/releases/?arch=any&version=21&os=any"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Install Java 21
-                </a>
-              </strong>
-              for the current DPX release.
-            </p>
-
-            <p>
-              Make sure Java is installed before running DPX.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <!-- STEP 3 -->
-
-        <div class="install-step">
-
-          <span class="step-number">
-            3
-          </span>
-
-          <div>
-
-            <h3>
-              Refresh your PowerShell PATH
-            </h3>
-
-            <p>
-              After installing DPX, open PowerShell and run:
-            </p>
-
-            <pre><code>$env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")</code></pre>
-
-            <p>
-              This refreshes the current PowerShell session
-              so it can find the newly installed
-              <code>dpx</code> command.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <!-- STEP 4 -->
-
-        <div class="install-step">
-
-          <span class="step-number">
-            4
-          </span>
-
-          <div>
-
-            <h3>
-              Test DPX
-            </h3>
-
-            <p>
-              Run:
-            </p>
-
-            <pre><code>dpx version</code></pre>
-
-            <p>
-              You should see the installed DPX version.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <!-- STEP 5 -->
-
-        <div class="install-step">
-
-          <span class="step-number">
-            5
-          </span>
-
-          <div>
-
-            <h3>
-              Install packages
-            </h3>
-
-            <p>
-              Search the repository and install packages
-              directly from the command line:
-            </p>
-
-            <pre><code>dpx search minecraft
-dpx info minecraft-bot
-dpx install minecraft-bot</code></pre>
-
-            <p>
-              Command-line installation is the main way
-              to use DPX.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         JAVA NOTICE
-    ========================== -->
-
-    <section class="section">
-
-      <div class="about-card">
-
-        <div class="about-icon">
-          !
-        </div>
-
-        <div>
-
-          <span class="eyebrow">
-            IMPORTANT
-          </span>
-
-          <h2>
-            Java is currently required
-          </h2>
-
-          <p>
-            DPX 0.1.1 currently requires Java to run.
-            Java 21 is recommended for the current release.
-            A future DPX release may bundle a Java runtime
-            so users do not have to install Java separately.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         MANUAL DOWNLOAD
-    ========================== -->
-
-    <section class="about-section">
-
-      <div>
-
-        <span class="eyebrow">
-          ALTERNATIVE
+        <span class="version-badge">
+          v0.1.1
         </span>
-
-        <h2>
-          Prefer downloading packages manually?
-        </h2>
 
       </div>
 
       <p>
-        You can also browse the DPX package repository and
-        download package files directly from the website
-        without using the command line.
+        Official Windows installer for DPX.
       </p>
 
-      <div class="hero-actions">
+      <div class="download-actions">
 
         <a
           class="button primary"
-          href="index.html#packages"
+          href="packages/releases/DPX-Setup.exe"
         >
-          Browse packages
+          Download DPX-Setup.exe
+        </a>
+
+        <a
+          class="button secondary"
+          href="index.html"
+        >
+          Back
         </a>
 
       </div>
 
     </section>
 
+
+    <!-- INSTALL STEPS -->
+
+    <section class="steps">
+
+      <h2>
+        Installation
+      </h2>
+
+
+      <!-- STEP 1 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          1
+        </span>
+
+        <div>
+
+          <h3>
+            Install DPX
+          </h3>
+
+          <p>
+            Download and run the DPX installer.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- STEP 2 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          2
+        </span>
+
+        <div>
+
+          <h3>
+            Install Java 21
+          </h3>
+
+          <p>
+            DPX currently requires Java.
+            <a
+              href="YOUR_JAVA_21_LINK_HERE"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Install Java 21 ↗
+            </a>
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- STEP 3 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          3
+        </span>
+
+        <div>
+
+          <h3>
+            Refresh PowerShell
+          </h3>
+
+          <p>
+            Run this command after installing DPX so your
+            current PowerShell session can see the DPX command.
+          </p>
+
+          <div class="command-box">
+
+            <code id="pathCommand">$env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")</code>
+
+            <button
+              class="copy-button"
+              type="button"
+              data-copy="pathCommand"
+            >
+              Copy
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- STEP 4 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          4
+        </span>
+
+        <div>
+
+          <h3>
+            Test DPX
+          </h3>
+
+          <p>
+            Check that DPX is installed correctly.
+          </p>
+
+          <div class="command-box">
+
+            <code id="versionCommand">dpx version</code>
+
+            <button
+              class="copy-button"
+              type="button"
+              data-copy="versionCommand"
+            >
+              Copy
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- STEP 5 -->
+
+      <div class="step">
+
+        <span class="step-number">
+          5
+        </span>
+
+        <div>
+
+          <h3>
+            Install packages
+          </h3>
+
+          <p>
+            DPX's main purpose is installing packages
+            from the public repository.
+          </p>
+
+          <div class="command-box">
+
+            <code id="installCommand">dpx install minecraft-bot</code>
+
+            <button
+              class="copy-button"
+              type="button"
+              data-copy="installCommand"
+            >
+              Copy
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NOTE -->
+
+    <div class="java-note">
+
+      <strong>Java requirement:</strong>
+      Java 21 is recommended for the current DPX release.
+      A future version of DPX may bundle its own Java runtime.
+
+    </div>
+
   </main>
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
+  <!-- FOOTER -->
 
   <footer class="site-footer">
 
@@ -531,6 +549,51 @@ dpx install minecraft-bot</code></pre>
   <script>
     document.getElementById("year").textContent =
       new Date().getFullYear();
+
+    document
+      .querySelectorAll("[data-copy]")
+      .forEach(button => {
+
+        button.addEventListener("click", async () => {
+
+          const target =
+            document.getElementById(
+              button.dataset.copy
+            );
+
+          const text =
+            target.textContent;
+
+          try {
+
+            await navigator.clipboard.writeText(text);
+
+            const original =
+              button.textContent;
+
+            button.textContent =
+              "Copied!";
+
+            setTimeout(() => {
+              button.textContent =
+                original;
+            }, 1200);
+
+          } catch {
+
+            button.textContent =
+              "Failed";
+
+            setTimeout(() => {
+              button.textContent =
+                "Copy";
+            }, 1200);
+
+          }
+
+        });
+
+      });
   </script>
 
 </body>
