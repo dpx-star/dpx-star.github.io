@@ -44,5 +44,6 @@
       "platform": "Windows",
       "download": "packages/releases/DPX-Setup.exe.zip",
       "source": "https://github.com/dpx-star/dpx-star.github.io"
+    }
   ]
 }
