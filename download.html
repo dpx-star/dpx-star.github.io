@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Download Damian Packager X (DPX) for Windows."
+  >
+
+  <title>Download DPX — Damian Packager X</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="index.html"
+      aria-label="DPX home"
+    >
+      <span class="brand-mark">D</span>
+
+      <span>
+        <strong>DPX</strong>
+        <small>Damian Packager X</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a href="index.html#packages">Packages</a>
+      <a href="index.html#about">About</a>
+
+      <a
+        href="https://github.com/dpx-star/dpx-star.github.io"
+        target="_blank"
+        rel="noopener"
+      >
+        GitHub ↗
+      </a>
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          WINDOWS • LATEST RELEASE
+        </span>
+
+        <h1>
+          Download<br>
+          <span>DPX.</span>
+        </h1>
+
+        <p>
+          Damian Packager X is a lightweight package manager
+          for Windows. Install DPX and manage packages directly
+          from PowerShell or Command Prompt.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            class="button primary"
+            href="DPX-Setup.exe"
+          >
+            Download DPX
+          </a>
+
+          <a
+            class="button secondary"
+            href="index.html"
+          >
+            Back to repository
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="terminal-card"
+        aria-label="DPX terminal preview"
+      >
+
+        <div class="terminal-top">
+          <span></span>
+          <span></span>
+          <span></span>
+          <small>PowerShell</small>
+        </div>
+
+        <div class="terminal-body">
+
+          <p>
+            <span class="prompt">PS C:\&gt;</span>
+            dpx version
+          </p>
+
+          <p class="success">
+            DPX — Damian Packager X
+          </p>
+
+          <p class="muted">
+            Version 0.1.1
+          </p>
+
+          <p>
+            <span class="prompt">PS C:\&gt;</span>
+            dpx search minecraft
+          </p>
+
+          <p class="success">
+            ✓ Packages found
+          </p>
+
+          <p>
+            <span class="cursor">█</span>
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="eyebrow">
+            DPX 0.1.1
+          </span>
+
+          <h2>
+            Windows installer
+          </h2>
+        </div>
+
+      </div>
+
+
+      <div class="package-grid">
+
+        <article class="package-card">
+
+          <div class="package-top">
+
+            <div class="package-icon">
+              D
+            </div>
+
+            <span class="tag">
+              Windows
+            </span>
+
+          </div>
+
+          <h3>
+            Damian Packager X
+          </h3>
+
+          <span class="version">
+            v0.1.1
+          </span>
+
+          <p>
+            Install DPX and use the
+            <code>dpx</code> command from PowerShell
+            or Command Prompt.
+          </p>
+
+          <div class="package-footer">
+
+            <small>
+              DPX-Setup.exe
+            </small>
+
+            <a
+              class="button secondary small"
+              href="DPX-Setup.exe"
+            >
+              Download
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <section class="about-section">
+
+      <div>
+
+        <span class="eyebrow">
+          AFTER INSTALLATION
+        </span>
+
+        <h2>
+          Use DPX from your terminal.
+        </h2>
+
+      </div>
+
+      <p>
+        After installing DPX, open a new PowerShell or
+        Command Prompt window and run commands such as:
+      </p>
+
+      <pre><code>dpx version
+dpx help
+dpx search minecraft
+dpx info minecraft-bot
+dpx install minecraft-bot</code></pre>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <span>
+      © <span id="year"></span> DPX
+    </span>
+
+    <span>
+      Damian Packager X • Open source
+    </span>
+
+  </footer>
+
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
