@@ -37,12 +37,12 @@
     "id": "dpx-installer",
       "name": "DPX INSTALLER",
       "version": "1.0.3",
-      "description": "quick jar builder for Java (Mainly)",
+      "description": "Official DPX Installer",
       "category": "Utilities",
       "license": "MIT",
       "publisher": "DPX",
       "platform": "Windows",
-      "download": "packages/releases/DPX-Setup.exe.zip",
+      "download": "packages/releases/DPX-Setup.zip",
       "source": "https://github.com/dpx-star/dpx-star.github.io"
     }
   ]
