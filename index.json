@@ -1,35 +1,36 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+
   "repository": {
     "name": "Damian Packager X",
-    "id": "dpm",
+    "id": "dpx",
     "description": "Public package repository for DPX.",
-    "github": "https://github.com/dpx-star/dpx-star.github.io"
+    "github": "https://github.com/dpx-star/dpx-star.github.io",
+
+    "packagesPath": "packages/releases"
   },
+
   "packages": [
     {
       "id": "example",
       "name": "Example Package",
       "version": "1.0.0",
-      "description": "A sample package showing how DPM package metadata works.",
+      "description": "A sample package showing how DPX package metadata works.",
       "category": "Utilities",
       "license": "MIT",
       "publisher": "DPX",
-      "platform": "Windows",
-      "download": "https://github.com/dpx-star/dpx-star.github.io",
-      "source": "https://github.com/dpx-star/dpx-star.github.io"
+      "platform": "Windows"
     },
+
     {
       "id": "example-devtool",
       "name": "Example DevTool",
       "version": "0.3.0",
-      "description": "A second sample package for testing search and categories.",
+      "description": "A second example package for testing search and categories.",
       "category": "Development",
       "license": "MIT",
-      "publisher": "DPM",
-      "platform": "Windows",
-      "download": "https://github.com/dpx-star/dpx-star.github.io",
-      "source": "https://github.com/dpx-star/dpx-star.github.io"
+      "publisher": "DPX",
+      "platform": "Windows"
     }
   ]
 }
