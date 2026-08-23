@@ -1,11 +1,13 @@
 {
   "schemaVersion": 1,
+
   "repository": {
     "name": "Damian Packager X",
     "id": "dpx",
     "description": "Public package repository for DPX.",
     "github": "https://github.com/dpx-star/dpx-star.github.io"
   },
+
   "packages": [
     {
       "id": "minecraft-bot",
@@ -18,6 +20,19 @@
       "platform": "Windows/Linux",
       "download": "packages/releases/minecraft-bot-main.zip",
       "source": "https://github.com/springknight3/minecraft-bot"
+    },
+
+    {
+      "id": "damians-jar-builder",
+      "name": "Damian's Jar Builder",
+      "version": "1.0.3",
+      "description": "quick jar builder for Java (Mainly)",
+      "category": "Utilities",
+      "license": "MIT",
+      "publisher": "DPX",
+      "platform": "Windows",
+      "download": "packages/releases/Damian.s.Jar.Builder.exe",
+      "source": "https://github.com/dpx-star/Damians-Jar-Builder"
     }
   ]
 }
