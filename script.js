@@ -1,210 +1,500 @@
+"use strict";
+
 const state = {
-  packages: [],
-  filtered: []
+    packages: [],
+    category: "all",
+    search: ""
 };
 
-const REPOSITORY = {
-  // Change this to your real GitHub repository before publishing.
-  github: "https://github.com/YOUR_USERNAME/damian-package-manager",
-  index: "index.json"
-};
+const packagesGrid = document.getElementById("packagesGrid");
+const featuredPackages = document.getElementById("featuredPackages");
+const searchInput = document.getElementById("searchInput");
+const resultsCount = document.getElementById("resultsCount");
+const packageCount = document.getElementById("packageCount");
+const categoryCount = document.getElementById("categoryCount");
+const emptyState = document.getElementById("emptyState");
+const clearSearch = document.getElementById("clearSearch");
 
-const els = {
-  grid: document.getElementById("packageGrid"),
-  empty: document.getElementById("emptyState"),
-  search: document.getElementById("searchInput"),
-  category: document.getElementById("categoryFilter"),
-  count: document.getElementById("packageCount"),
-  github: document.getElementById("githubLink"),
-  heroGithub: document.getElementById("heroGithub"),
-  theme: document.getElementById("themeButton"),
-  modal: document.getElementById("modal"),
-  modalTitle: document.getElementById("modalTitle"),
-  modalCategory: document.getElementById("modalCategory"),
-  modalDescription: document.getElementById("modalDescription"),
-  modalVersion: document.getElementById("modalVersion"),
-  modalLicense: document.getElementById("modalLicense"),
-  modalPublisher: document.getElementById("modalPublisher"),
-  modalPlatform: document.getElementById("modalPlatform"),
-  modalCommand: document.getElementById("modalCommand"),
-  modalDownload: document.getElementById("modalDownload"),
-  modalSource: document.getElementById("modalSource"),
-  copyCommand: document.getElementById("copyCommand"),
-  year: document.getElementById("year")
-};
+const modal = document.getElementById("packageModal");
+const modalContent = document.getElementById("modalContent");
+const closeModal = document.getElementById("closeModal");
 
-els.github.href = REPOSITORY.github;
-els.heroGithub.href = REPOSITORY.github;
-els.year.textContent = new Date().getFullYear();
 
-function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
-  }[char]));
+/* =========================
+   LOAD REGISTRY
+========================= */
+
+async function loadRegistry() {
+
+    try {
+
+        const response = await fetch("index.json", {
+            cache: "no-cache"
+        });
+
+        if (!response.ok) {
+            throw new Error("Unable to load package registry.");
+        }
+
+        const data = await response.json();
+
+        state.packages = Array.isArray(data.packages)
+            ? data.packages
+            : [];
+
+        updateStats();
+        renderFeatured();
+        renderPackages();
+
+    } catch (error) {
+
+        console.error(error);
+
+        packagesGrid.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">!</div>
+
+                <h3>Registry unavailable</h3>
+
+                <p>
+                    The package registry could not be loaded.
+                </p>
+            </div>
+        `;
+
+    }
+
 }
 
-function iconFor(category) {
-  const icons = {
-    browser: "◉",
-    development: "</>",
-    utilities: "⚙",
-    media: "▶",
-    games: "◆",
-    productivity: "✦"
-  };
-  return icons[String(category).toLowerCase()] || "□";
+
+/* =========================
+   STATS
+========================= */
+
+function updateStats() {
+
+    packageCount.textContent = state.packages.length;
+
+    const categories = new Set();
+
+    state.packages.forEach(pkg => {
+
+        if (Array.isArray(pkg.categories)) {
+
+            pkg.categories.forEach(category => {
+                categories.add(category);
+            });
+
+        }
+
+    });
+
+    categoryCount.textContent = categories.size;
+
 }
 
-async function loadPackages() {
-  els.count.textContent = "Loading…";
 
-  try {
-    const response = await fetch(REPOSITORY.index, { cache: "no-store" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+/* =========================
+   FILTERING
+========================= */
 
-    const data = await response.json();
-    state.packages = Array.isArray(data.packages) ? data.packages : [];
-    populateCategories();
-    applyFilters();
-  } catch (error) {
-    console.error("Could not load package index:", error);
-    state.packages = [];
-    els.count.textContent = "Repository unavailable";
-    els.grid.innerHTML = `
-      <div class="empty-state" style="grid-column: 1 / -1;">
-        <div class="empty-icon">!</div>
-        <h3>Could not load the package repository</h3>
-        <p>Check that <code>index.json</code> exists and that the site is being served over HTTP(S).</p>
-      </div>`;
-  }
+function getFilteredPackages() {
+
+    const query = state.search
+        .trim()
+        .toLowerCase();
+
+    return state.packages.filter(pkg => {
+
+        const matchesCategory =
+            state.category === "all" ||
+            (
+                Array.isArray(pkg.categories) &&
+                pkg.categories.includes(state.category)
+            );
+
+        if (!matchesCategory) {
+            return false;
+        }
+
+        if (!query) {
+            return true;
+        }
+
+        const searchable = [
+            pkg.name,
+            pkg.description,
+            pkg.author,
+            ...(pkg.categories || []),
+            ...(pkg.tags || [])
+        ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+        return searchable.includes(query);
+
+    });
+
 }
 
-function populateCategories() {
-  const categories = [...new Set(
-    state.packages.map(pkg => pkg.category).filter(Boolean)
-  )].sort();
 
-  els.category.innerHTML = `<option value="all">All categories</option>`;
-  for (const category of categories) {
-    const option = document.createElement("option");
-    option.value = category;
-    option.textContent = category;
-    els.category.appendChild(option);
-  }
+/* =========================
+   PACKAGE CARD
+========================= */
+
+function createPackageCard(pkg, featured = false) {
+
+    const categories = Array.isArray(pkg.categories)
+        ? pkg.categories
+        : [];
+
+    const tags = Array.isArray(pkg.tags)
+        ? pkg.tags
+        : [];
+
+    const icon = pkg.icon || "D";
+
+    const categoryHTML = categories
+        .slice(0, 2)
+        .map(category =>
+            `<span class="tag">${escapeHTML(category)}</span>`
+        )
+        .join("");
+
+    const tagsHTML = tags
+        .slice(0, 2)
+        .map(tag =>
+            `<span class="tag">${escapeHTML(tag)}</span>`
+        )
+        .join("");
+
+    const card = document.createElement("article");
+
+    card.className =
+        `package-card ${featured ? "featured-card" : ""}`;
+
+    card.innerHTML = `
+        <div class="package-top">
+
+            <div class="package-icon">
+                ${escapeHTML(icon)}
+            </div>
+
+            <span class="package-version">
+                v${escapeHTML(pkg.version || "0.0.0")}
+            </span>
+
+        </div>
+
+        <h3>
+            ${escapeHTML(pkg.name)}
+        </h3>
+
+        <p class="package-description">
+            ${escapeHTML(pkg.description || "No description available.")}
+        </p>
+
+        <div class="package-meta">
+            ${categoryHTML}
+            ${tagsHTML}
+        </div>
+    `;
+
+    card.addEventListener("click", () => {
+        openPackage(pkg);
+    });
+
+    return card;
+
 }
 
-function applyFilters() {
-  const query = els.search.value.trim().toLowerCase();
-  const category = els.category.value;
 
-  state.filtered = state.packages.filter(pkg => {
-    const haystack = [
-      pkg.name, pkg.id, pkg.description, pkg.category, pkg.publisher
-    ].join(" ").toLowerCase();
-
-    const matchesSearch = !query || haystack.includes(query);
-    const matchesCategory = category === "all" || pkg.category === category;
-    return matchesSearch && matchesCategory;
-  });
-
-  renderPackages();
-}
+/* =========================
+   RENDER PACKAGES
+========================= */
 
 function renderPackages() {
-  els.count.textContent = `${state.filtered.length} package${state.filtered.length === 1 ? "" : "s"}`;
 
-  if (!state.filtered.length) {
-    els.grid.innerHTML = "";
-    els.empty.classList.remove("hidden");
-    return;
-  }
+    const filtered = getFilteredPackages();
 
-  els.empty.classList.add("hidden");
+    packagesGrid.innerHTML = "";
 
-  els.grid.innerHTML = state.filtered.map((pkg, index) => `
-    <article class="package-card">
-      <div class="package-top">
-        <div class="package-icon">${escapeHtml(iconFor(pkg.category))}</div>
-        <span class="tag">${escapeHtml(pkg.category || "Other")}</span>
-      </div>
-      <h3>${escapeHtml(pkg.name)}</h3>
-      <span class="version">v${escapeHtml(pkg.version || "unknown")}</span>
-      <p>${escapeHtml(pkg.description || "No description provided.")}</p>
-      <div class="package-footer">
-        <small>${escapeHtml(pkg.platform || "Windows")}</small>
-        <button class="button secondary small" type="button" data-package-index="${index}">View</button>
-      </div>
-    </article>
-  `).join("");
+    resultsCount.textContent =
+        `${filtered.length} package${filtered.length === 1 ? "" : "s"}`;
 
-  els.grid.querySelectorAll("[data-package-index]").forEach(button => {
-    button.addEventListener("click", () => {
-      openPackage(state.filtered[Number(button.dataset.packageIndex)]);
+    if (filtered.length === 0) {
+
+        emptyState.classList.remove("hidden");
+
+        return;
+
+    }
+
+    emptyState.classList.add("hidden");
+
+    filtered.forEach(pkg => {
+
+        packagesGrid.appendChild(
+            createPackageCard(pkg)
+        );
+
     });
-  });
+
 }
+
+
+/* =========================
+   FEATURED
+========================= */
+
+function renderFeatured() {
+
+    featuredPackages.innerHTML = "";
+
+    const featured = state.packages
+        .filter(pkg => pkg.featured === true)
+        .slice(0, 3);
+
+    featured.forEach(pkg => {
+
+        featuredPackages.appendChild(
+            createPackageCard(pkg, true)
+        );
+
+    });
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
 
 function openPackage(pkg) {
-  els.modalTitle.textContent = pkg.name || "Package";
-  els.modalCategory.textContent = pkg.category || "Other";
-  els.modalDescription.textContent = pkg.description || "No description provided.";
-  els.modalVersion.textContent = pkg.version || "Unknown";
-  els.modalLicense.textContent = pkg.license || "Unknown";
-  els.modalPublisher.textContent = pkg.publisher || "Unknown";
-  els.modalPlatform.textContent = pkg.platform || "Windows";
-  els.modalCommand.textContent = `dpm install ${pkg.id || pkg.name}`;
 
-  els.modalDownload.href = pkg.download || "#";
-  els.modalSource.href = pkg.source || REPOSITORY.github;
+    const installCommand =
+        pkg.install ||
+        `dpx install ${pkg.name}`;
 
-  els.modal.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
+    modalContent.innerHTML = `
+        <div class="package-icon">
+            ${escapeHTML(pkg.icon || "D")}
+        </div>
+
+        <br>
+
+        <h2 class="modal-title">
+            ${escapeHTML(pkg.name)}
+        </h2>
+
+        <p class="modal-description">
+            ${escapeHTML(pkg.description || "")}
+        </p>
+
+        <div class="package-meta">
+
+            <span class="tag">
+                v${escapeHTML(pkg.version || "0.0.0")}
+            </span>
+
+            <span class="tag">
+                ${escapeHTML(pkg.author || "Unknown")}
+            </span>
+
+        </div>
+
+        <br>
+
+        <div class="install-command">
+            ${escapeHTML(installCommand)}
+        </div>
+
+        <button
+            class="copy-button"
+            id="copyInstall"
+        >
+            Copy install command
+        </button>
+    `;
+
+    modal.classList.remove("hidden");
+
+    document
+        .getElementById("copyInstall")
+        .addEventListener("click", async () => {
+
+            try {
+
+                await navigator.clipboard.writeText(
+                    installCommand
+                );
+
+                const button =
+                    document.getElementById("copyInstall");
+
+                button.textContent = "Copied!";
+
+                setTimeout(() => {
+                    button.textContent =
+                        "Copy install command";
+                }, 1500);
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+
+        });
+
 }
 
-function closeModal() {
-  els.modal.classList.add("hidden");
-  document.body.style.overflow = "";
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function hideModal() {
+    modal.classList.add("hidden");
 }
 
-async function copyInstallCommand() {
-  try {
-    await navigator.clipboard.writeText(els.modalCommand.textContent);
-    const original = els.copyCommand.textContent;
-    els.copyCommand.textContent = "Copied!";
-    setTimeout(() => els.copyCommand.textContent = original, 1200);
-  } catch {
-    alert("Could not copy the command automatically.");
-  }
-}
+closeModal.addEventListener("click", hideModal);
 
-function loadTheme() {
-  const saved = localStorage.getItem("dpm-theme");
-  const theme = saved || "dark";
-  document.documentElement.dataset.theme = theme;
-  els.theme.textContent = theme === "dark" ? "☀" : "☾";
-}
+modal.addEventListener("click", event => {
 
-function toggleTheme() {
-  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = next;
-  localStorage.setItem("dpm-theme", next);
-  els.theme.textContent = next === "dark" ? "☀" : "☾";
-}
+    if (
+        event.target.classList.contains("modal-backdrop")
+    ) {
+        hideModal();
+    }
 
-els.search.addEventListener("input", applyFilters);
-els.category.addEventListener("change", applyFilters);
-els.theme.addEventListener("click", toggleTheme);
-els.copyCommand.addEventListener("click", copyInstallCommand);
-
-document.querySelectorAll("[data-close-modal]").forEach(element => {
-  element.addEventListener("click", closeModal);
 });
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && !els.modal.classList.contains("hidden")) {
-    closeModal();
-  }
+
+    if (event.key === "Escape") {
+        hideModal();
+    }
+
 });
 
-loadTheme();
-loadPackages();
+
+/* =========================
+   SEARCH
+========================= */
+
+searchInput.addEventListener("input", event => {
+
+    state.search = event.target.value;
+
+    renderPackages();
+
+});
+
+
+/* =========================
+   CATEGORY BUTTONS
+========================= */
+
+document
+    .querySelectorAll(".quick-tags button")
+    .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            document
+                .querySelectorAll(".quick-tags button")
+                .forEach(btn =>
+                    btn.classList.remove("active")
+                );
+
+            button.classList.add("active");
+
+            state.category =
+                button.dataset.category || "all";
+
+            renderPackages();
+
+        });
+
+    });
+
+
+/* =========================
+   CLEAR SEARCH
+========================= */
+
+clearSearch.addEventListener("click", () => {
+
+    searchInput.value = "";
+
+    state.search = "";
+    state.category = "all";
+
+    document
+        .querySelectorAll(".quick-tags button")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    document
+        .querySelector('[data-category="all"]')
+        .classList.add("active");
+
+    renderPackages();
+
+});
+
+
+/* =========================
+   "/" SEARCH SHORTCUT
+========================= */
+
+document.addEventListener("keydown", event => {
+
+    const target = event.target;
+
+    const isTyping =
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA";
+
+    if (
+        event.key === "/" &&
+        !isTyping
+    ) {
+
+        event.preventDefault();
+
+        searchInput.focus();
+
+    }
+
+});
+
+
+/* =========================
+   HTML ESCAPING
+========================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+document
+    .querySelector('[data-category="all"]')
+    .classList.add("active");
+
+loadRegistry();
