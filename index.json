@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "repository": {
+    "name": "Damian Package Manager",
+    "id": "dpm",
+    "description": "Public package repository for DPM.",
+    "github": "https://github.com/YOUR_USERNAME/damian-package-manager"
+  },
+  "packages": [
+    {
+      "id": "example",
+      "name": "Example Package",
+      "version": "1.0.0",
+      "description": "A sample package showing how DPM package metadata works.",
+      "category": "Utilities",
+      "license": "MIT",
+      "publisher": "DPM",
+      "platform": "Windows",
+      "download": "https://github.com/YOUR_USERNAME/damian-package-manager/releases",
+      "source": "https://github.com/YOUR_USERNAME/damian-package-manager"
+    },
+    {
+      "id": "example-devtool",
+      "name": "Example DevTool",
+      "version": "0.3.0",
+      "description": "A second sample package for testing search and categories.",
+      "category": "Development",
+      "license": "MIT",
+      "publisher": "DPM",
+      "platform": "Windows",
+      "download": "https://github.com/YOUR_USERNAME/damian-package-manager/releases",
+      "source": "https://github.com/YOUR_USERNAME/damian-package-manager"
+    }
+  ]
+}
