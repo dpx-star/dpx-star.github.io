@@ -1,127 +1,454 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DPM — Damian Package Manager for Windows. Browse packages and find installation information.">
-  <title>DPM — Damian Package Manager</title>
+
+  <meta
+    name="description"
+    content="DPX — Damian Packager X. Browse packages, explore package information, and discover software for Windows."
+  >
+
+  <meta name="theme-color" content="#0b0d12">
+
+  <title>DPX — Damian Packager X</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header class="site-header">
-    <a class="brand" href="#" aria-label="DPM home">
+
+    <a
+      class="brand"
+      href="#"
+      aria-label="DPX — Damian Packager X home"
+    >
       <span class="brand-mark">D</span>
+
       <span>
         <strong>DPX</strong>
         <small>Damian Packager X</small>
       </span>
     </a>
 
-    <nav class="nav">
-      <a href="#packages">Packages</a>
-      <a href="#about">About</a>
-      <a id="githubLink" href="#" target="_blank" rel="noopener">GitHub ↗</a>
-      <button id="themeButton" class="icon-button" type="button" aria-label="Toggle theme">☾</button>
+
+    <nav class="nav" aria-label="Main navigation">
+
+      <a href="#packages">
+        Packages
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+      <a
+        id="githubLink"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub ↗
+      </a>
+
+      <button
+        id="themeButton"
+        class="icon-button"
+        type="button"
+        aria-label="Toggle theme"
+        title="Toggle theme"
+      >
+        ☾
+      </button>
+
     </nav>
+
   </header>
 
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
   <main>
+
+    <!-- HERO -->
+
     <section class="hero">
+
       <div class="hero-content">
-        <span class="eyebrow">OPEN • SIMPLE • WINDOWS</span>
-        <h1>Your packages.<br><span>One command.</span></h1>
-        <p>DPM is a lightweight package manager project for Windows. Browse the repository, discover packages, and install them from the command line.</p>
+
+        <span class="eyebrow">
+          OPEN • SIMPLE • WINDOWS
+        </span>
+
+        <h1>
+          Your packages.<br>
+          <span>One command.</span>
+        </h1>
+
+        <p>
+          Damian Packager X is a lightweight package manager project
+          for Windows. Browse the public repository, discover packages,
+          and install software from the command line.
+        </p>
+
 
         <div class="hero-actions">
-          <a class="button primary" href="#packages">Browse packages</a>
-          <a class="button secondary" id="heroGithub" href="#" target="_blank" rel="noopener">View on GitHub</a>
+
+          <a
+            class="button primary"
+            href="#packages"
+          >
+            Browse packages
+          </a>
+
+          <a
+            class="button secondary"
+            id="heroGithub"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on GitHub
+          </a>
+
         </div>
+
       </div>
 
-      <div class="terminal-card" aria-label="DPM terminal preview">
+
+      <!-- TERMINAL PREVIEW -->
+
+      <div
+        class="terminal-card"
+        aria-label="DPX terminal preview"
+      >
+
         <div class="terminal-top">
-          <span></span><span></span><span></span>
-          <small>dpm.exe</small>
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+          <small>dpx.exe</small>
+
         </div>
+
+
         <div class="terminal-body">
-          <p><span class="prompt">C:\&gt;</span> dpm search</p>
-          <p class="muted">Searching package repository...</p>
-          <p><span class="prompt">C:\&gt;</span> dpm install example</p>
-          <p class="success">✓ Example 1.0.0 installed</p>
-          <p><span class="cursor">█</span></p>
+
+          <p>
+            <span class="prompt">C:\&gt;</span>
+            dpx search
+          </p>
+
+          <p class="muted">
+            Searching package repository...
+          </p>
+
+          <p>
+            <span class="prompt">C:\&gt;</span>
+            dpx install example
+          </p>
+
+          <p class="success">
+            ✓ Example 1.0.0 installed
+          </p>
+
+          <p>
+            <span class="cursor">█</span>
+          </p>
+
         </div>
+
       </div>
+
     </section>
 
-    <section id="packages" class="section">
+
+    <!-- PACKAGES -->
+
+    <section
+      id="packages"
+      class="section"
+    >
+
       <div class="section-heading">
+
         <div>
-          <span class="eyebrow">REPOSITORY</span>
-          <h2>Browse packages</h2>
+
+          <span class="eyebrow">
+            DPX REPOSITORY
+          </span>
+
+          <h2>
+            Browse packages
+          </h2>
+
         </div>
-        <span id="packageCount" class="count">Loading…</span>
+
+        <span
+          id="packageCount"
+          class="count"
+        >
+          Loading…
+        </span>
+
       </div>
+
+
+      <!-- SEARCH / FILTER -->
 
       <div class="toolbar">
+
         <label class="search-box">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="Search packages…" autocomplete="off">
+
+          <span aria-hidden="true">
+            ⌕
+          </span>
+
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search packages…"
+            autocomplete="off"
+            aria-label="Search packages"
+          >
+
         </label>
-        <select id="categoryFilter" aria-label="Filter by category">
-          <option value="all">All categories</option>
+
+
+        <select
+          id="categoryFilter"
+          aria-label="Filter packages by category"
+        >
+          <option value="all">
+            All categories
+          </option>
         </select>
+
       </div>
 
-      <div id="packageGrid" class="package-grid" aria-live="polite"></div>
-      <div id="emptyState" class="empty-state hidden">
-        <div class="empty-icon">⌕</div>
-        <h3>No packages found</h3>
-        <p>Try a different search term or category.</p>
+
+      <!-- PACKAGE GRID -->
+
+      <div
+        id="packageGrid"
+        class="package-grid"
+        aria-live="polite"
+      ></div>
+
+
+      <!-- EMPTY STATE -->
+
+      <div
+        id="emptyState"
+        class="empty-state hidden"
+      >
+
+        <div
+          class="empty-icon"
+          aria-hidden="true"
+        >
+          ⌕
+        </div>
+
+        <h3>
+          No packages found
+        </h3>
+
+        <p>
+          Try a different search term or category.
+        </p>
+
       </div>
+
     </section>
 
-    <section id="about" class="about-section">
+
+    <!-- ABOUT -->
+
+    <section
+      id="about"
+      class="about-section"
+    >
+
       <div>
-        <span class="eyebrow">ABOUT DPM</span>
-        <h2>A package manager built as a project.</h2>
+
+        <span class="eyebrow">
+          ABOUT DPX
+        </span>
+
+        <h2>
+          A package manager built as a project.
+        </h2>
+
       </div>
-      <p>DPM is designed around a simple public package repository. Package metadata lives in <code>index.json</code>, while releases can be hosted through GitHub Releases. The website is static, so it can be hosted for free with GitHub Pages.</p>
+
+
+      <p>
+        Damian Packager X (DPX) is designed around a simple public
+        package repository. Package metadata lives in
+        <code>index.json</code>, while package releases and source
+        code can be hosted through GitHub. The website is static,
+        making it possible to host the repository for free with
+        GitHub Pages.
+      </p>
+
     </section>
+
   </main>
 
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer class="site-footer">
-    <span>© <span id="year"></span> DPM</span>
-    <span>Built for Windows • Open source</span>
+
+    <span>
+      © <span id="year"></span> Damian Packager X
+    </span>
+
+    <span>
+      Built for Windows • Open source
+    </span>
+
   </footer>
 
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-backdrop" data-close-modal></div>
+
+  <!-- =========================
+       PACKAGE MODAL
+  ========================== -->
+
+  <div
+    id="modal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+    <div
+      class="modal-backdrop"
+      data-close-modal
+    ></div>
+
+
     <article class="modal-card">
-      <button class="modal-close" type="button" aria-label="Close" data-close-modal>×</button>
-      <span id="modalCategory" class="tag"></span>
+
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Close package details"
+        title="Close"
+        data-close-modal
+      >
+        ×
+      </button>
+
+
+      <span
+        id="modalCategory"
+        class="tag"
+      ></span>
+
+
       <h2 id="modalTitle"></h2>
+
+
       <p id="modalDescription"></p>
 
+
+      <!-- PACKAGE DETAILS -->
+
       <div class="detail-grid">
-        <div><span>Version</span><strong id="modalVersion"></strong></div>
-        <div><span>License</span><strong id="modalLicense"></strong></div>
-        <div><span>Publisher</span><strong id="modalPublisher"></strong></div>
-        <div><span>Platform</span><strong id="modalPlatform"></strong></div>
+
+        <div>
+          <span>Version</span>
+          <strong id="modalVersion"></strong>
+        </div>
+
+        <div>
+          <span>License</span>
+          <strong id="modalLicense"></strong>
+        </div>
+
+        <div>
+          <span>Publisher</span>
+          <strong id="modalPublisher"></strong>
+        </div>
+
+        <div>
+          <span>Platform</span>
+          <strong id="modalPlatform"></strong>
+        </div>
+
       </div>
+
+
+      <!-- INSTALL COMMAND -->
 
       <div class="install-box">
-        <span>Install with DPM</span>
+
+        <span>
+          Install with DPX
+        </span>
+
         <code id="modalCommand"></code>
-        <button id="copyCommand" class="button secondary small" type="button">Copy command</button>
+
+        <button
+          id="copyCommand"
+          class="button secondary small"
+          type="button"
+        >
+          Copy command
+        </button>
+
       </div>
+
+
+      <!-- PACKAGE LINKS -->
 
       <div class="modal-actions">
-        <a id="modalDownload" class="button primary" href="#" target="_blank" rel="noopener">Download / Release ↗</a>
-        <a id="modalSource" class="button secondary" href="#" target="_blank" rel="noopener">Source ↗</a>
+
+        <a
+          id="modalDownload"
+          class="button primary"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Download / Release ↗
+        </a>
+
+        <a
+          id="modalSource"
+          class="button secondary"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Source ↗
+        </a>
+
       </div>
+
     </article>
+
   </div>
 
+
   <script src="script.js"></script>
+
 </body>
 </html>
+```
