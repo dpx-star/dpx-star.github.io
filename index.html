@@ -1,127 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DPM — Damian Package Manager for Windows. Browse packages and find installation information.">
-  <title>DPM — Damian Package Manager</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DPX Packages</title>
+    <meta name="description" content="DPX Package Manager — discover and install software.">
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="site-header">
-    <a class="brand" href="#" aria-label="DPM home">
-      <span class="brand-mark">D</span>
-      <span>
-        <strong>DPM</strong>
-        <small>Damian Package Manager</small>
-      </span>
-    </a>
 
-    <nav class="nav">
-      <a href="#packages">Packages</a>
-      <a href="#about">About</a>
-      <a id="githubLink" href="#" target="_blank" rel="noopener">GitHub ↗</a>
-      <button id="themeButton" class="icon-button" type="button" aria-label="Toggle theme">☾</button>
-    </nav>
-  </header>
+    <header class="navbar">
+        <div class="nav-inner">
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <span class="eyebrow">OPEN • SIMPLE • WINDOWS</span>
-        <h1>Your packages.<br><span>One command.</span></h1>
-        <p>DPM is a lightweight package manager project for Windows. Browse the repository, discover packages, and install them from the command line.</p>
+            <a href="#" class="brand">
+                <div class="brand-icon">D</div>
+                <div>
+                    <strong>DPX</strong>
+                    <span>Packages</span>
+                </div>
+            </a>
 
-        <div class="hero-actions">
-          <a class="button primary" href="#packages">Browse packages</a>
-          <a class="button secondary" id="heroGithub" href="#" target="_blank" rel="noopener">View on GitHub</a>
+            <nav>
+                <a href="#packages">Packages</a>
+                <a href="#featured">Featured</a>
+                <a href="#about">About</a>
+            </nav>
+
+            <a
+                class="github-button"
+                href="https://github.com/dpx-star/dpx-star.github.io"
+                target="_blank"
+                rel="noopener"
+            >
+                GitHub
+            </a>
+
         </div>
-      </div>
+    </header>
 
-      <div class="terminal-card" aria-label="DPM terminal preview">
-        <div class="terminal-top">
-          <span></span><span></span><span></span>
-          <small>dpm.exe</small>
+
+    <main>
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    <span class="status-dot"></span>
+                    Open package registry
+                </div>
+
+                <h1>
+                    Software,
+                    <span>simplified.</span>
+                </h1>
+
+                <p>
+                    Discover packages for your system through the DPX
+                    package ecosystem.
+                </p>
+
+                <div class="search-box">
+                    <span class="search-icon">⌕</span>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search packages..."
+                        autocomplete="off"
+                    >
+
+                    <kbd>/</kbd>
+                </div>
+
+                <div class="quick-tags">
+                    <button data-category="all">All</button>
+                    <button data-category="developer">Developer</button>
+                    <button data-category="utilities">Utilities</button>
+                    <button data-category="games">Games</button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Stats -->
+
+        <section class="stats-section">
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong id="packageCount">0</strong>
+                    <span>Packages</span>
+                </div>
+
+                <div class="stat">
+                    <strong id="categoryCount">0</strong>
+                    <span>Categories</span>
+                </div>
+
+                <div class="stat">
+                    <strong>100%</strong>
+                    <span>Open</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Featured -->
+
+        <section class="section" id="featured">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">HAND PICKED</span>
+                    <h2>Featured packages</h2>
+                </div>
+
+            </div>
+
+            <div id="featuredPackages" class="featured-grid"></div>
+
+        </section>
+
+
+        <!-- Packages -->
+
+        <section class="section" id="packages">
+
+            <div class="section-heading packages-heading">
+
+                <div>
+                    <span class="eyebrow">REGISTRY</span>
+                    <h2>Browse packages</h2>
+                </div>
+
+                <div class="results-info">
+                    <span id="resultsCount">0 packages</span>
+                </div>
+
+            </div>
+
+
+            <div id="packagesGrid" class="packages-grid"></div>
+
+
+            <div id="emptyState" class="empty-state hidden">
+
+                <div class="empty-icon">⌕</div>
+
+                <h3>No packages found</h3>
+
+                <p>
+                    Try another search term or category.
+                </p>
+
+                <button id="clearSearch" class="primary-button">
+                    Clear search
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- About -->
+
+        <section class="section about-section" id="about">
+
+            <div class="about-card">
+
+                <div class="about-icon">D</div>
+
+                <div>
+                    <span class="eyebrow">ABOUT DPX</span>
+
+                    <h2>A simple package ecosystem.</h2>
+
+                    <p>
+                        DPX is designed to make discovering and distributing
+                        software simple. The registry is powered by a
+                        lightweight JSON index and can be hosted entirely
+                        through GitHub.
+                    </p>
+
+                    <a
+                        href="https://github.com/dpx-star/dpx-star.github.io"
+                        target="_blank"
+                        rel="noopener"
+                        class="text-link"
+                    >
+                        View the repository →
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div>
+                <strong>DPX Packages</strong>
+                <p>Simple software distribution.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#packages">Packages</a>
+                <a href="#featured">Featured</a>
+                <a
+                    href="https://github.com/dpx-star/dpx-star.github.io"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    GitHub
+                </a>
+            </div>
+
         </div>
-        <div class="terminal-body">
-          <p><span class="prompt">C:\&gt;</span> dpm search</p>
-          <p class="muted">Searching package repository...</p>
-          <p><span class="prompt">C:\&gt;</span> dpm install example</p>
-          <p class="success">✓ Example 1.0.0 installed</p>
-          <p><span class="cursor">█</span></p>
+
+        <div class="copyright">
+            © 2026 DPX Project
         </div>
-      </div>
-    </section>
 
-    <section id="packages" class="section">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">REPOSITORY</span>
-          <h2>Browse packages</h2>
+    </footer>
+
+
+    <!-- Package modal -->
+
+    <div id="packageModal" class="modal hidden">
+
+        <div class="modal-backdrop"></div>
+
+        <div class="modal-window">
+
+            <button id="closeModal" class="modal-close">
+                ×
+            </button>
+
+            <div id="modalContent"></div>
+
         </div>
-        <span id="packageCount" class="count">Loading…</span>
-      </div>
 
-      <div class="toolbar">
-        <label class="search-box">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="Search packages…" autocomplete="off">
-        </label>
-        <select id="categoryFilter" aria-label="Filter by category">
-          <option value="all">All categories</option>
-        </select>
-      </div>
+    </div>
 
-      <div id="packageGrid" class="package-grid" aria-live="polite"></div>
-      <div id="emptyState" class="empty-state hidden">
-        <div class="empty-icon">⌕</div>
-        <h3>No packages found</h3>
-        <p>Try a different search term or category.</p>
-      </div>
-    </section>
 
-    <section id="about" class="about-section">
-      <div>
-        <span class="eyebrow">ABOUT DPM</span>
-        <h2>A package manager built as a project.</h2>
-      </div>
-      <p>DPM is designed around a simple public package repository. Package metadata lives in <code>index.json</code>, while releases can be hosted through GitHub Releases. The website is static, so it can be hosted for free with GitHub Pages.</p>
-    </section>
-  </main>
+    <script src="script.js"></script>
 
-  <footer class="site-footer">
-    <span>© <span id="year"></span> DPM</span>
-    <span>Built for Windows • Open source</span>
-  </footer>
-
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-backdrop" data-close-modal></div>
-    <article class="modal-card">
-      <button class="modal-close" type="button" aria-label="Close" data-close-modal>×</button>
-      <span id="modalCategory" class="tag"></span>
-      <h2 id="modalTitle"></h2>
-      <p id="modalDescription"></p>
-
-      <div class="detail-grid">
-        <div><span>Version</span><strong id="modalVersion"></strong></div>
-        <div><span>License</span><strong id="modalLicense"></strong></div>
-        <div><span>Publisher</span><strong id="modalPublisher"></strong></div>
-        <div><span>Platform</span><strong id="modalPlatform"></strong></div>
-      </div>
-
-      <div class="install-box">
-        <span>Install with DPM</span>
-        <code id="modalCommand"></code>
-        <button id="copyCommand" class="button secondary small" type="button">Copy command</button>
-      </div>
-
-      <div class="modal-actions">
-        <a id="modalDownload" class="button primary" href="#" target="_blank" rel="noopener">Download / Release ↗</a>
-        <a id="modalSource" class="button secondary" href="#" target="_blank" rel="noopener">Source ↗</a>
-      </div>
-    </article>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
