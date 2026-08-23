@@ -1,35 +1,106 @@
 {
-  "schemaVersion": 1,
-  "repository": {
-    "name": "Damian Package Manager",
-    "id": "dpm",
-    "description": "Public package repository for DPM.",
-    "github": "https://github.com/YOUR_USERNAME/damian-package-manager"
-  },
-  "packages": [
-    {
-      "id": "example",
-      "name": "Example Package",
-      "version": "1.0.0",
-      "description": "A sample package showing how DPM package metadata works.",
-      "category": "Utilities",
-      "license": "MIT",
-      "publisher": "DPM",
-      "platform": "Windows",
-      "download": "https://github.com/YOUR_USERNAME/damian-package-manager/releases",
-      "source": "https://github.com/YOUR_USERNAME/damian-package-manager"
-    },
-    {
-      "id": "example-devtool",
-      "name": "Example DevTool",
-      "version": "0.3.0",
-      "description": "A second sample package for testing search and categories.",
-      "category": "Development",
-      "license": "MIT",
-      "publisher": "DPM",
-      "platform": "Windows",
-      "download": "https://github.com/YOUR_USERNAME/damian-package-manager/releases",
-      "source": "https://github.com/YOUR_USERNAME/damian-package-manager"
-    }
-  ]
+    "name": "DPX Package Registry",
+    "version": "1.0.0",
+    "description": "Official package registry for the DPX package manager.",
+    "repository": "https://github.com/dpx-star/dpx-star.github.io",
+    "packages": [
+        {
+            "name": "hello-world",
+            "version": "1.0.0",
+            "description": "A simple package used to test the DPX package manager.",
+            "author": "DPX Team",
+            "icon": "H",
+            "categories": [
+                "utilities"
+            ],
+            "tags": [
+                "test",
+                "example"
+            ],
+            "featured": true,
+            "install": "dpx install hello-world"
+        },
+        {
+            "name": "dpx-tools",
+            "version": "1.2.0",
+            "description": "Useful command-line utilities for working with DPX packages.",
+            "author": "DPX Team",
+            "icon": "D",
+            "categories": [
+                "developer",
+                "utilities"
+            ],
+            "tags": [
+                "cli",
+                "tools"
+            ],
+            "featured": true,
+            "install": "dpx install dpx-tools"
+        },
+        {
+            "name": "dev-utils",
+            "version": "2.0.1",
+            "description": "A collection of small utilities for developers.",
+            "author": "DPX Team",
+            "icon": "U",
+            "categories": [
+                "developer"
+            ],
+            "tags": [
+                "development",
+                "utilities"
+            ],
+            "featured": true,
+            "install": "dpx install dev-utils"
+        },
+        {
+            "name": "text-tools",
+            "version": "1.0.0",
+            "description": "Simple tools for manipulating and processing text files.",
+            "author": "DPX Team",
+            "icon": "T",
+            "categories": [
+                "utilities"
+            ],
+            "tags": [
+                "text",
+                "files"
+            ],
+            "featured": false,
+            "install": "dpx install text-tools"
+        },
+        {
+            "name": "json-viewer",
+            "version": "1.1.0",
+            "description": "A lightweight JSON viewer for developers.",
+            "author": "DPX Team",
+            "icon": "J",
+            "categories": [
+                "developer",
+                "utilities"
+            ],
+            "tags": [
+                "json",
+                "developer"
+            ],
+            "featured": false,
+            "install": "dpx install json-viewer"
+        },
+        {
+            "name": "pixel-game",
+            "version": "0.5.0",
+            "description": "A tiny example game distributed through the DPX package system.",
+            "author": "DPX Community",
+            "icon": "P",
+            "categories": [
+                "games"
+            ],
+            "tags": [
+                "game",
+                "example"
+            ],
+            "featured": false,
+            "install": "dpx install pixel-game"
+        }
+    ]
 }
